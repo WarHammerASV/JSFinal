@@ -44,10 +44,11 @@ namespace JScntrl
                    if (type == "System.Int32")
             {
                 var textBox = new TextBox();
-
                 typeValue.Controls.Add(textBox);
                 textBox.Text = value;
                 textBox.Attributes["onKeyUp"] = "javascript:IntegerValidation(this);";
+                textBox.Attributes["maxValue"] = "255";
+                textBox.Attributes["minValue"] = "-255";
             }
         }
 
@@ -62,7 +63,10 @@ namespace JScntrl
                 {
                     count--;
                 }
-                    errorLabel.Text = count == 0 ? "Поставьте галку" : "";            
+                if (count == 0)
+                {
+                    Response.Write("Нужно поставить галку");
+                }            
             }
             else
             {
