@@ -43,9 +43,8 @@ namespace JScntrl
 
         private void SaveClick(object sender, EventArgs e)
         {
-           
-            if (serializeFlag)
-            {
+            serializeFlag = true;
+
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Parameter>), new XmlRootAttribute("Parameters"));
 
                 Parameter par1 = new Parameter();
@@ -83,19 +82,34 @@ namespace JScntrl
                 par4.Name = " Nuisance call abandonment rate";
                 par4.Description = "This is blah-blah-blah";
                 par4.Value = Request.Form["ctl07$ctl04"];
+                    if (int.Parse(par4.Value) > 255 || int.Parse(par4.Value) < -255)
+                    {
+                        Response.Write("Значение должно быть от -255 до 255");
+                        serializeFlag = false;
+                    }
                 par4.Type = "System.Int32";
                 outputList.Add(par4);
                 par5.Id = "AbandonmentRate";
                 par5.Name = " Nuisance call abandonment rate";
                 par5.Description = "This is blah-blah-blah";
                 par5.Value = Request.Form["ctl08$ctl04"];
-                par5.Type = "System.Int32";
+                    if (int.Parse(par5.Value) > 255 || int.Parse(par5.Value) < -255)
+                    {
+                        Response.Write("Значение должно быть от -255 до 255");
+                        serializeFlag = false;
+                    }
+                    par5.Type = "System.Int32";
                 outputList.Add(par5);
                 par6.Id = "AbandonmentRate";
                 par6.Name = " Nuisance call abandonment rate";
                 par6.Description = "This is blah-blah-blah";
                 par6.Value = Request.Form["ctl09$ctl04"];
-                par6.Type = "System.Int32";
+                    if (int.Parse(par6.Value) > 255 || int.Parse(par6.Value) < -255)
+                    {
+                        Response.Write("Значение должно быть от -255 до 255");
+                        serializeFlag = false;
+                    }
+                    par6.Type = "System.Int32";
                 outputList.Add(par6);
                     par7.Id = "AbandonmentRate";
                     par7.Name = " Nuisance call abandonment rate";
@@ -118,12 +132,11 @@ namespace JScntrl
                     par8.Type = "System.Boolean";
                     outputList.Add(par8);
 
-
-
-                    serializer.Serialize(fs, outputList);
-                }
-
-            }
+                    if (serializeFlag)
+                    {
+                        serializer.Serialize(fs, outputList);
+                    }
+                }      
         }
 
 

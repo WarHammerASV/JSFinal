@@ -49,15 +49,6 @@ namespace JScntrl {
         protected global::System.Web.UI.WebControls.Label Description;
         
         /// <summary>
-        /// errorLabel элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorLabel;
-        
-        /// <summary>
         /// typeValue элемент управления.
         /// </summary>
         /// <remarks>

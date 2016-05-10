@@ -23,18 +23,18 @@ namespace JScntrl
             parType.Text = type;
             if (type == "System.Boolean")
             {
-                var boolBox = new CheckBox();
-                typeValue.Controls.Add(boolBox);
-                boolBox.Checked = Convert.ToBoolean(value);
-                boolBox.AutoPostBack = true;
+                CheckBox checkBox = new CheckBox();
+                typeValue.Controls.Add(checkBox);
+                checkBox.Checked = Convert.ToBoolean(value);
+                checkBox.AutoPostBack = true;
                 if (value == "True")
                     count++;
-                boolBox.CheckedChanged += UpdateCheckBoxBox;
+                checkBox.CheckedChanged += CheckCheckBox;
             }
             else
                if (type == "System.String")
             {
-                var textBox = new TextBox();
+                TextBox textBox = new TextBox();
 
                 typeValue.Controls.Add(textBox);
                 textBox.Text = value;
@@ -43,7 +43,7 @@ namespace JScntrl
             else
                    if (type == "System.Int32")
             {
-                var textBox = new TextBox();
+                TextBox textBox = new TextBox();
                 typeValue.Controls.Add(textBox);
                 textBox.Text = value;
                 textBox.Attributes["onKeyUp"] = "javascript:IntegerValidation(this);";
@@ -52,7 +52,7 @@ namespace JScntrl
             }
         }
 
-        protected void UpdateCheckBoxBox(object sender, EventArgs e)
+        protected void CheckCheckBox(object sender, EventArgs e)
         {
             if (sender is CheckBox)
             {
@@ -65,7 +65,7 @@ namespace JScntrl
                 }
                 if (count == 0)
                 {
-                    Response.Write("Нужно поставить галку");
+                    Response.Write("Нужно поставить галку хотя бы на один чекбокс");
                 }            
             }
             else
